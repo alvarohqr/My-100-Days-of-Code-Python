@@ -49,12 +49,5 @@ def Calculator():
             Calculator()       
         elif cont == 'y':
             n1 = result
-            '''
-            op = input('Pick an operation: ')
-            n2 = float(input("What's the next number?: "))
-            result = Calculator(n1, n2, op)
-            print(f"{n1} {op} {n2} = {result}")
-            cont = input(f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation: ").lower()
-            '''
-        
+            
 Calculator()

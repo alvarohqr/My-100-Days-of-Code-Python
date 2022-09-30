@@ -21,8 +21,6 @@ while keep:
         print(("Not a valid decision!"))
         os.system('cls')
 
-#print(auction)
-
 winner = ''
 max_bid = 0
 
