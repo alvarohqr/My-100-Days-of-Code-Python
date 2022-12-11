@@ -9,7 +9,7 @@ identical, otherwise the tests won't pass.
 
 #Fix the code below 👇
 
-print("Day 1 - String Manipulation")
+print("Day 1 - String Manipulation ")
 print('String Concatenation is done with the "+" sign.') #Comillas mal colocadas?
 print("e.g. print(\"Hello \" + \"world\")") #Comillas dobles anidadas
 print("New lines can be created with a backslash and n.") #Tenía in parentesis extra

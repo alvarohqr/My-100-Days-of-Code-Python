@@ -5,8 +5,8 @@ Warning: The output in your program should match the example output shown below
 exactly, character for character, even spaces and symbols should be identical, 
 otherwise the tests won't pass.
 '''
-#Write your code below this line 👇
+#Write your code below this line 👇 
 
-print("Day 1 - Python Print Function")
+print("Day 1 - Python Print Function ")
 print('The function is declared like this:')
 print("print('what to print')")

@@ -6,5 +6,5 @@ calculates the length of a string.
 
 #Write your code below this line 👇
 
-name =  input('What is your name?')
+name =  input('What is your name? ')
 print(len(name))
