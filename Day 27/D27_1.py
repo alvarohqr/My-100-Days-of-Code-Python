@@ -12,9 +12,9 @@ my_label["text"] = "New Text"
 my_label.config(text="New Text 2")
 
 #Button
-
 def button_clicked():
-    print("I got clicked")
+    global my_label
+    my_label.config(text="Button got clicked")
 
 button = Button(text="Click me", command=button_clicked)
 button.pack()
