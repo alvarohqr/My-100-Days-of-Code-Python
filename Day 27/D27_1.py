@@ -11,7 +11,12 @@ my_label.pack()
 my_label["text"] = "New Text"
 my_label.config(text="New Text 2")
 
-button = Button(text="Click me")
+#Button
+
+def button_clicked():
+    print("I got clicked")
+
+button = Button(text="Click me", command=button_clicked)
 button.pack()
 
 window.mainloop()
