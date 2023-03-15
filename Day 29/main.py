@@ -1,6 +1,8 @@
 from tkinter import * 
-FONT_NAME = "Arial"
+from tkinter import messagebox
 import string
+
+FONT_NAME = "Arial"
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 characters = [char for char in string.printable]
@@ -12,10 +14,19 @@ def save_password():
     password = password_entry.get()
     website = web_entry.get()
     email = email_entry.get()
-    with open("Day 29/data.txt", mode="a") as data:
-        data.write(f"{website}\t | \t{email}\t | \t{password}\n")
-    web_entry.delete(0, END)
-    password_entry.delete(0, END)
+    
+    #Alert popup window
+    if not(len(password)) or not(len(website)):
+        messagebox.showwarning(title="ERROR", message="Empty Website or Password!")
+    else:
+        #Confirmation popup window
+        is_ok = messagebox.askokcancel(title=website, message=f"This are the details entered:\nEmail: {email}\nPaswword{password}\nIs it ok to save?")
+        
+        if is_ok:
+            with open("Day 29/data.txt", mode="a") as data:
+                data.write(f"{website}\t | \t{email}\t | \t{password}\n")
+            web_entry.delete(0, END)
+            password_entry.delete(0, END) 
 
 # ---------------------------- UI SETUP ------------------------------- #
 #Window setup
