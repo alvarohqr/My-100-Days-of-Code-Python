@@ -3,6 +3,7 @@ from tkinter import messagebox
 import string
 from random import choice, randint, shuffle
 import pyperclip
+import json
 
 FONT_NAME = "Arial"
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -30,18 +31,34 @@ def save_password():
     website = web_entry.get()
     email = email_entry.get()
     
+    new_data = {
+        website: 
+            {"email":email, 
+             "password":password
+             }
+            }
+    
     #Alert popup window
     if not(len(password)) or not(len(website)):
         messagebox.showwarning(title="ERROR", message="Empty Website or Password!")
     else:
-        #Confirmation popup window
-        is_ok = messagebox.askokcancel(title=website, message=f"This are the details entered:\nEmail: {email}\nPaswword{password}\nIs it ok to save?")
-        
-        if is_ok:
-            with open("Day 29/data.txt", mode="a") as data:
-                data.write(f"{website}\t | \t{email}\t | \t{password}\n")
-            web_entry.delete(0, END)
-            password_entry.delete(0, END) 
+        try:
+            with open("Day 29/data.json", mode="r") as data_file:
+                    #Reading old data
+                    data = json.load(data_file) 
+        except FileNotFoundError:        
+            #Creates the file
+            with open("Day 29/data.json", mode="w") as data_file: 
+                    json.dump(new_data, data_file, indent=4) 
+        else:
+            #Updating old data with new_data
+            data.update(new_data)
+            with open("Day 29/data.json", mode="w") as data_file:
+                    #Saving updated data
+                    json.dump(new_data, data_file, indent=4)      
+        finally:      
+                web_entry.delete(0, END)
+                password_entry.delete(0, END) 
 
 # ---------------------------- UI SETUP ------------------------------- #
 #Window setup
