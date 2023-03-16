@@ -6,6 +6,21 @@ import pyperclip
 import json
 
 FONT_NAME = "Arial"
+
+# ---------------------------- SEARCH ------------------------------- #
+def find_password():
+    website = web_entry.get() 
+    try:
+        with open("Day 29/data.json", mode="r") as data_file:
+            #Reading old data 
+                data = json.load(data_file)  
+    except FileNotFoundError:
+        messagebox.showerror(title="ERROR", message="No Data File Found!") 
+    else:
+        if website in data:
+            messagebox.showinfo(title=website, message= f"Email: {data[website]['email']}\nPassword: {data[website]['password']}")
+        else:
+            messagebox.showerror(title="ERROR", message=f"No details for the {website} exist")   
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -95,4 +110,7 @@ password_button = Button(text="Generate Password", command=generate_password)
 password_button.grid(column=2, row=3) 
 add_button = Button(text="Add", width=48, command=save_password)
 add_button.grid(column=1, row=4, columnspan=2) 
+search_button = Button(text="Search", command=find_password, width=14)
+search_button.grid(column=2, row=1)
+
 window.mainloop()
