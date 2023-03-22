@@ -1,27 +1,33 @@
-from tkinter import *
 import requests
+import random
+from datetime import datetime
+# URL endpoint
+URL = "https://api.sunrise-sunset.org/json"
 
-def get_quote():
-    response = requests.get(url="https://api.kanye.rest")
-    data = response.json()
-    canvas.itemconfig(quote_text, text=data['quote'], font= ("Arial", 24, "bold"))
+lat = random.randint(-10000000, 10000000) / 100000
+lng = random.randint(-10000000, 10000000) / 100000
 
+# date = datetime.now()
+# day = date.weekday() 
 
+# My solution
+response = requests.get(url=URL+f"?lat={lat}&lng={lng}")
+data = response.json()['results']
+#print(data)
 
-window = Tk()
-window.title("Kanye Says...")
-window.config(padx=50, pady=50)
+# Angela solution
+parameters = {
+    "lat" : random.randint(-10000000, 10000000) / 100000,
+    "lng" : random.randint(-10000000, 10000000) / 100000,
+    "formatted" : 0
+}
 
-canvas = Canvas(width=300, height=414)
-background_img = PhotoImage(file="Day 33/background.png")
-canvas.create_image(150, 207, image=background_img)
-quote_text = canvas.create_text(150, 207, text="Kanye Quote Goes HERE", width=250, font=("Arial", 24, "bold"), fill="white")
-canvas.grid(row=0, column=0)
-
-kanye_img = PhotoImage(file="Day 33/kanye.png")
-kanye_button = Button(image=kanye_img, highlightthickness=0, command=get_quote)
-kanye_button.grid(row=1, column=0)
-
-
-
-window.mainloop()
+response = requests.get(url=URL, params=parameters)
+data = response.json()['results']
+sunrise = data['sunrise'].split("T")[1].split(":")[0]
+sunset = data['sunset'].split("T")[1].split(":")[0]
+# print just the hour
+print(sunrise)
+print(sunset)
+time_now = datetime.now()
+print(time_now.hour)
