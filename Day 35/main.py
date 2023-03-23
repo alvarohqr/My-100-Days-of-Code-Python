@@ -13,4 +13,19 @@ parameters = {
 
 response = requests.get(url=URL, params=parameters)
 weather_data = response.json()
-print(weather_data)
+hourly_data = weather_data["hourly"]
+# # Getting the first hour weather id
+# print(hourly_data[0]["weather"][0]["id"])
+
+# The next 12 hours of weather data
+weather_slice = hourly_data[:12]
+
+will_rain = False
+
+for hourly_data in weather_slice:
+    condition_code = hourly_data["weather"][0]["id"]
+    if int(condition_code) < 700:
+        will_rain = True
+
+if will_rain:
+    print("Bring an umbrella.")
