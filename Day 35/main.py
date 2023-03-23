@@ -1,6 +1,6 @@
 import requests
 
-API_KEY = "e2b5f5c48ac8cf5cacb4db9925b42256"
+API_KEY = "APP"
 URL = "https://api.openweathermap.org/data/3.0/onecall"
 
 # Just getting the hourly forecast
